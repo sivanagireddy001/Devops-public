@@ -10,6 +10,8 @@ sudo apt-get update
 ```
 sudo apt-get install rsyslog
 ```
+Install the rsyslog into your server by default the configuration file path is `/etc/rsyslog.conf`.
+
 2. Configure rsyslog to listen on the default port 514
 
 ```
@@ -59,26 +61,37 @@ sudo systemctl status rsyslog
 ```
 sudo systemctl enable rsyslog
 ```
+<br></br>
 
+# On the Target Server
 
+1. Install rsyslog if it is not already installed
+```
+sudo apt-get update
+sudo apt-get install rsyslog
+```
+Install the rsyslog into your server by default the configuration file path is `/etc/rsyslog.conf`.
 
+2. Configure rsyslog to forward logs to the source server
+```
+sudo nano /etc/rsyslog.conf
+```
+Add the following line at the end of the file, replacing `source-server` with the `IP address` or `hostname` of the source server.
 
+**For UDP**
+```
+*.* @source-server:514
+```
+**For TCP**
+```
+*.* @@source-server:514
+```
+Save and close the file.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+3. Restart the rsyslog service
+```
+sudo systemctl restart rsyslog
+```
 
 
 
