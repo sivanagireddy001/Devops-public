@@ -31,14 +31,36 @@ rsync -avz /home/user/docs/ user@192.168.1.100:/home/remoteuser/docs/
 This will copy the contents of the `/home/user/docs` directory to the remote server at `/home/remoteuser/docs/`, using compression and preserving file permissions, timestamps, and ownership.
 * `Note` that you will need to replace `user` and `remoteuser` with the appropriate usernames for your system.
 
+<br></br>
 
+# some useful rsync commands
 
-
-
-
-
-
-
-
-
+* Copy files from one directory to another on the same system
+```
+rsync -av /path/to/source/directory/ /path/to/destination/directory/
+```
+* Copy files from a local system to a remote system
+```
+rsync -av /path/to/local/directory/ user@remote:/path/to/remote/directory/
+```
+* Copy files from a remote system to a local system
+```
+rsync -av user@remote:/path/to/remote/directory/ /path/to/local/directory/
+```
+* Copy files from a local system to a remote system with SSH key authentication
+```
+rsync -av -e "ssh -i /path/to/private/key" /path/to/local/directory/ user@remote:/path/to/remote/directory/
+```
+* Copy only the files that have changed
+```
+rsync -av --update /path/to/source/directory/ /path/to/destination/directory/
+```
+* Delete files from the destination directory that don't exist in the source directory
+```
+rsync -av --delete /path/to/source/directory/ /path/to/destination/directory/
+```
+* Dry-run `rsync` to see what changes would be made
+```
+rsync -av --dry-run /path/to/source/directory/ /path/to/destination/directory/
+```
 
