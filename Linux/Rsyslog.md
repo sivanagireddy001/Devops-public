@@ -93,8 +93,13 @@ Save and close the file.
 sudo systemctl restart rsyslog
 ```
 
+<br></br>
 
-
+**some useful rsyslog commands**
+To check the rsyslog version type the below command
+```
+rsyslogd -v
+```
 
 
 
